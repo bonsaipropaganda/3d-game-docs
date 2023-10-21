@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://5ipqmff8hwbo"]
+
+[node name="Main" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.185914, 0)
+size = Vector3(8.20106, 0.343264, 6.46915)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.171499, 0.985184, 0, -0.985184, -0.171499, 0, 1.81112, 0)
+shadow_enabled = true
