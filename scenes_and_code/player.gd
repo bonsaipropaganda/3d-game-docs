@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 var speed = 14
-var fall_acceleration = 75
+var fall_acceleration = 45
 var target_velocity = Vector3.ZERO
 
 func _physics_process(delta):
@@ -28,6 +28,14 @@ func _physics_process(delta):
 
 	if !is_on_floor():
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+		
+	if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
+		target_velocity.y = 20
 	
 	velocity = target_velocity
+	
+	for index in range(get_slide_collision_count()):
+		# We get one of the collisions with the player
+		var collision = get_slide_collision(index)
+		print(collision.get_collider())
 	move_and_slide()

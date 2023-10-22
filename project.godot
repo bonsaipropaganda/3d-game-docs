@@ -15,6 +15,12 @@ run/main_scene="res://scenes_and_code/main.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[layer_names]
+
+3d_physics/layer_1="player"
+3d_physics/layer_2="mob"
+3d_physics/layer_3="world"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
