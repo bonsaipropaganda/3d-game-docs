@@ -30,12 +30,15 @@ func _physics_process(delta):
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 		
 	if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
-		target_velocity.y = 20
+		target_velocity.y = 17
 	
 	velocity = target_velocity
 	
 	for index in range(get_slide_collision_count()):
 		# We get one of the collisions with the player
 		var collision = get_slide_collision(index)
-		print(collision.get_collider())
+		if collision.get_collider():
+			print(collision)
+			print(collision.get_collider().name)
+	
 	move_and_slide()

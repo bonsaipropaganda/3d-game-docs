@@ -71,7 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
 curve = SubResource("Curve3D_rkui4")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.999951, 0.000179857, -0.00985481, 0, 0.999834, 0.0182476, 0.00985645, 0.0182467, -0.999785, 16.1776, 0.259266, -14.5321)
+transform = Transform3D(-0.999951, 0.000179861, -0.00985505, -7.27595e-12, 0.999834, 0.0182476, 0.00985669, 0.0182467, -0.999785, 16.1776, 0.259266, -14.5321)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

@@ -12,7 +12,7 @@ func spawn_mob():
 	m.mob_init($Path3D/PathFollow3D.position, $Player.position)
 	add_child(m)
 	m.score.connect(_on_update_score)
-	m.add_to_group("mob")
+#	m.add_to_group("mob")
 
 
 func _on_update_score():
