@@ -18,3 +18,9 @@ func spawn_mob():
 func _on_update_score():
 	score += 1
 	$ScoreLabel.text = "Score: " + str(score)
+
+
+func _on_button_pressed():
+	$Timer.start()
+	score = 0
+	$Button.hide()

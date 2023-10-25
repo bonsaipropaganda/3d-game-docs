@@ -33,12 +33,15 @@ func _physics_process(delta):
 		target_velocity.y = 17
 	
 	velocity = target_velocity
+	move_and_slide()
 	
 	for index in range(get_slide_collision_count()):
 		# We get one of the collisions with the player
 		var collision = get_slide_collision(index)
-		if collision.get_collider():
-			print(collision)
-			print(collision.get_collider().name)
+		if collision.get_collider().is_in_group("mob"):
+			if !is_on_floor():
+				collision.get_collider().queue_free()
+			else:
+				$"../Timer".stop()
+				$"../Button".show()
 	
-	move_and_slide()

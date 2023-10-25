@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4l4ud6yvfw2p"]
+
+[ext_resource type="Script" path="res://scenes_and_code/CharacterBody3D.gd" id="1_2g2j1"]
+[ext_resource type="PackedScene" uid="uid://k2r6dmb0vdc4" path="res://scenes_and_code/bad.tscn" id="2_waja3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_767nn"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_7amcr"]
+sky_material = SubResource("ProceduralSkyMaterial_767nn")
+
+[sub_resource type="Environment" id="Environment_pwj78"]
+background_mode = 2
+sky = SubResource("Sky_7amcr")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_7q015"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1nfj"]
+albedo_color = Color(0.580392, 0.427451, 0, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1oq6d"]
+points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
+
+[node name="Test" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pwj78")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.49892, 0)
+script = ExtResource("1_2g2j1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
+mesh = SubResource("BoxMesh_7q015")
+surface_material_override/0 = SubResource("StandardMaterial3D_d1nfj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("ConvexPolygonShape3D_1oq6d")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -4, -1, 0)
+use_collision = true
+size = Vector3(6, 2, 6)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5, -1, 0)
+use_collision = true
+size = Vector3(6, 2, 6)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="Bad" parent="." instance=ExtResource("2_waja3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22062, 3.1602, 0)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "Score: "
+
+[node name="Button" type="Button" parent="."]
+offset_left = 352.0
+offset_top = 213.0
+offset_right = 398.0
+offset_bottom = 244.0
+scale = Vector2(5, 5)
+text = "Start"
+
+[connection signal="body_entered" from="Bad" to="Bad" method="_on_body_entered"]
+[connection signal="pressed" from="Button" to="Bad" method="_on_button_pressed"]
